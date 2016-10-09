@@ -1,4 +1,3 @@
-# Created by .ignore support plugin (hsz.mobi)
 /bin
 /target
 .settings/
@@ -6,6 +5,7 @@
 .project
 .idea
 *.iml
+*.log
 
 *~
 
