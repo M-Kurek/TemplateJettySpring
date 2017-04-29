@@ -3,52 +3,36 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.springapp</groupId>
 	<artifactId>TemplateJettySpring</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>TemplateJettySpring</name>
 
 	<properties>
 		<jetty.version>9.0.0.M2</jetty.version>
 		<jettyplugin.version>9.0.0.M2</jettyplugin.version>
-		<spring.version>4.1.1.RELEASE</spring.version>
+		<spring.version>4.3.6.RELEASE</spring.version>
 		<version.slf4j>1.7.21</version.slf4j>
 	</properties>
 
 	<dependencies>
+		<!-- srping -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-
-
-
 		<!-- utils -->
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -65,66 +49,23 @@
 			<version>${version.slf4j}</version>
 		</dependency>
 
-<!--		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
-			<scope>test</scope>
-		</dependency>-->
+		<!--		<dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-test</artifactId>
+                    <version>${spring.version}</version>
+                    <scope>test</scope>
+                </dependency>-->
 
-		<!-- for jetty -->
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>el-api</artifactId>
-            <version>2.2</version>
-        </dependency>
-
-        <dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-server</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-webapp</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-plus</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-servlet</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-annotations</artifactId>
-			<version>${jetty.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>TemplateJettySpring</finalName>
+		<finalName>BrowsMe</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -139,14 +80,100 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>${jettyplugin.version}</version>
-				<dependencies>
-                    <dependency>
-                        <groupId>javax.el</groupId>
-                        <artifactId>el-api</artifactId>
-                        <version>2.2</version>
-                    </dependency>
-				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<path>/${project.build.finalName}</path>
+					<!--<contextFile></contextFile>-->
+					<!--<tomcatUsers></tomcatUsers>-->
+					<!--<tomcatWebXml></tomcatWebXml>-->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>Mvn properties:</echo>
+								<echo>[project.build.finalNam] ${project.build.finalName}</echo>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>jetty</id>
+			<dependencies>
+				<!-- for jetty -->
+				<dependency>
+					<groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId>
+					<version>3.1.0</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>javax.el</groupId>
+					<artifactId>el-api</artifactId>
+					<version>2.2</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-server</artifactId>
+					<version>${jetty.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-webapp</artifactId>
+					<version>${jetty.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-plus</artifactId>
+					<version>${jetty.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-servlet</artifactId>
+					<version>${jetty.version}</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-annotations</artifactId>
+					<version>${jetty.version}</version>
+				</dependency>
+			</dependencies>
+
+		</profile>
+		<profile>
+			<id>tomcat</id>
+			<dependencies>
+				<dependency>
+					<groupId>javax.servlet</groupId>
+					<artifactId>jstl</artifactId>
+					<version>1.2</version>
+				</dependency>
+				<dependency>
+					<groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId>
+					<version>3.1.0</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>
