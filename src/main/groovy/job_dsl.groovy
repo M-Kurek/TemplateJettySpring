@@ -54,7 +54,7 @@ factory.job(stepDeploy) {
     }
 }
 
-factory.deliveryPipelineView("my DSL pipeline view") {
+factory.deliveryPipelineView("2nd DSL pipeline view") {
     pipelines {
         component("Deployment", firstInPipeline)
     }
