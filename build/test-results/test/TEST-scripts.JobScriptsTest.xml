@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="scripts.JobScriptsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-04-09T07:27:16" hostname="cgj647-01" time="1.234">
-  <properties/>
-  <testcase name="compileSimpleScript" classname="scripts.JobScriptsTest" time="1.234"/>
-  <system-out><![CDATA[Processing provided DSL script
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
