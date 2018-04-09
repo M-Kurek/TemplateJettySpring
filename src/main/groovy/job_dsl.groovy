@@ -1,17 +1,10 @@
 /* helper setting for IntelliJ */
 javaposse.jobdsl.dsl.DslFactory factory = this
 
-def stepDeploy = "simple-mvn-boot-deploy"
-def firstInPipeline = "simple-mvn-boot-build"
+def stepBuild = "spring-mvn-build"
+def stepDeploy = "spring-mvn-deploy"
 
-
-factory.job("dsl-one-job") {
-    steps {
-        shell("echo groovy : WOW !")
-    }
-}
-
-factory.job(firstInPipeline) {
+factory.job(stepBuild) {
     deliveryPipelineConfiguration("Build")
     triggers {
         githubPush()
@@ -56,7 +49,8 @@ factory.job(stepDeploy) {
 
 factory.deliveryPipelineView("2nd DSL pipeline view") {
     pipelines {
-        component("Deployment", firstInPipeline)
+        component("Build", stepBuild)
+        component("Deployment", stepDeploy)
     }
     allowPipelineStart()
     showChangeLog()
