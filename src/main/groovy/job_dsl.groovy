@@ -14,7 +14,7 @@ factory.job(stepBuild) {
     //only colours
     wrappers { colorizeOutput() }
     steps {
-        shell("echo pulled z git")
+        shell("gradle clean build")
     }
 
     publishers {
