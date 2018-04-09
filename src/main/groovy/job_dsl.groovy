@@ -19,12 +19,12 @@ factory.job(stepBuild) {
 
     publishers {
         //gradle version
-        archiveArtifacts("build/reports/tests/test/**")
+        archiveJunit("build/reports/tests/test/**")
         archiveArtifacts("build/libs/*.jar")
 
         /*
         mk-LATER : mvn version
-        archiveArtifacts("target/surefire-reports/**")
+        archiveJunit("target/surefire-reports/**")
         archiveArtifacts(["target/*.war", "target/*.jar"])
         */
 
