@@ -10,7 +10,7 @@ factory.job(stepBuild) {
         githubPush()
     }
     // coping project
-    scm { github("M-Kurek/tmp4dsl") }
+    scm { github("M-Kurek/TemplateJettySpring", "gradle_4_dsl") }
     //only colours
     wrappers { colorizeOutput() }
     steps {
@@ -40,7 +40,7 @@ factory.job(stepBuild) {
 
 factory.job(stepDeploy) {
     deliveryPipelineConfiguration("Deployment")
-    scm { github("M-Kurek/tmp4dsl") }
+
     steps {
         shell('echo deploying')
         shell('echo and deployed')
