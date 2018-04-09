@@ -49,8 +49,7 @@ factory.job(stepDeploy) {
 
 factory.deliveryPipelineView("2nd DSL pipeline view") {
     pipelines {
-        component("Build", stepBuild)
-        component("Deployment", stepDeploy)
+        component("Create simple web app", stepBuild)
     }
     allowPipelineStart()
     showChangeLog()
