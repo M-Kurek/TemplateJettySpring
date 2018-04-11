@@ -1,32 +1,12 @@
 javaposse.jobdsl.dsl.DslFactory factory = this
 
-factory.pipelineJob("3rd DSL create pipeline") {
+factory.pipelineJob("4th DSL create pipeline") {
     definition {
-        cps {
-            sandbox()
-            script("""
-pipeline {
-    agent any
-    stages {
-        stage('Baseline') {
-            steps {
-                shell("echo Baseline here")
+        cpsScm {
+            scm {
+                git('https://github.com/jenkinsci/job-dsl-plugin.git')
             }
-        }
-        stage('Installation') {
-            steps {
-                shell("echo Installation here")
-            }
-        }
-
-        stage('Post-install') {
-            steps {
-                shell("echo Post-install here")
-            }
-         }    
-    }
-}
-      """.stripIndent())
+            scriptPath("src/main/groovy/pipelines_defs/pipeline_def_1.txt")
         }
     }
 }

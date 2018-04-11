@@ -11,7 +11,8 @@ import java.nio.file.Paths;
 public class JobScriptsTest {
 	private Path[] scriptPaths = {
             Paths.get("src/main/groovy/job_dsl.groovy"),
-            Paths.get("src/main/groovy/pipeline_dsl.groovy")
+            Paths.get("src/main/groovy/pipeline_dsl.groovy"),
+            Paths.get("src/main/groovy/pipeline_included_dsl.groovy")
     };
 
     @Test
