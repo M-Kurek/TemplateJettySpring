@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('Setup') {
+            steps {
+                shell("echo Baseline here")
+            }
+        }
+        stage('Installation') {
+            steps {
+                shell("echo Installation here")
+            }
+        }
+
+        stage('Clean up') {
+            steps {
+                shell("echo Post-install here")
+            }
+         }
+    }
+}

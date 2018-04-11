@@ -6,7 +6,7 @@ factory.pipelineJob("4th DSL create pipeline") {
             scm {
                 git('https://github.com/M-Kurek/TemplateJettySpring.git', 'gradle_4_dsl')
             }
-            scriptPath("src/main/groovy/pipelines_defs/pipeline_def_1.txt")
+            scriptPath("src/main/groovy/pipelines_defs/pipeline_def_2.txt")
         }
     }
 }
