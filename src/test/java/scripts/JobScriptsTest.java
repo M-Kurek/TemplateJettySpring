@@ -9,7 +9,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class JobScriptsTest {
-    private static final String SRC_DSL_GROOVY = "src/main/groovy/job_dsl.groovy";
+	private Path[] scriptPaths = {
+            Paths.get("src/main/groovy/job_dsl.groovy"),
+            Paths.get("src/main/groovy/pipeline_dsl.groovy")
+    };
 
     @Test
     public void compileSimpleScript() throws Exception {
@@ -18,11 +21,8 @@ public class JobScriptsTest {
         MemoryJobManagement jm = new MemoryJobManagement();
         DslScriptLoader loader = new DslScriptLoader(jm);
 
-        //when
-        Path path = Paths.get(SRC_DSL_GROOVY);
-        String script = new String(Files.readAllBytes(path));
-
         //then
-        loader.runScript(script);
-    }
-}
+        for (Path scriptPath : scriptPaths) {
+            loader.runScript(new String(Files.readAllBytes(scriptPath)));
+        }
+    }}
