@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Baseline') {
+        stage('Setup') {
             steps {
                 shell("echo Baseline here")
             }
