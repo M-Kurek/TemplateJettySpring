@@ -1,6 +1,6 @@
 javaposse.jobdsl.dsl.DslFactory factory = this
 
-factory.pipelineJob("3rd DSL pipeline view") {
+factory.pipelineJob("3rd DSL create pipeline") {
     definition {
         cps {
             sandbox()
