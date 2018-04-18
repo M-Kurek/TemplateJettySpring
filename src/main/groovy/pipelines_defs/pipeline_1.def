@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("Build Baseline ${new Date().format('MM_dd_E')}") {
+        stage("Build Baseline") {
             steps {
                 shell("echo Baseline here")
             }
