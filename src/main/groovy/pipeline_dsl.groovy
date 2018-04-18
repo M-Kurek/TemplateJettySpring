@@ -1,6 +1,6 @@
 javaposse.jobdsl.dsl.DslFactory factory = this
 
-factory.pipelineJob("4th DSL create pipeline") {
+factory.pipelineJob("4th pipeline ${new Date().format('MM_dd_E')}") {
     definition {
         cpsScm {
             scm {
