@@ -9,17 +9,14 @@ factory.job(stepBuild) {
     triggers {
         githubPush()
     }
-    // coping project
     scm { github("M-Kurek/TemplateJettySpring", "gradle_4_dsl") }
-    //only colours
-    wrappers { colorizeOutput() }
     steps {
         shell("gradle clean build")
     }
 
     publishers {
         //gradle version
-        archiveJunit("build/reports/tests/test/**")
+        archiveJunit("build/test-results/test/*.xml")
         archiveArtifacts("build/libs/*.jar")
 
         /*
@@ -51,7 +48,7 @@ factory.deliveryPipelineView("2nd DSL pipeline view") {
     pipelines {
         component("Create simple web app", stepBuild)
     }
-    allowPipelineStart()
+    allowPipelineStart(true)
     showChangeLog()
     allowRebuild()
     showDescription()

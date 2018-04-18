@@ -4,16 +4,27 @@ import javaposse.jobdsl.dsl.DslScriptLoader;
 import javaposse.jobdsl.dsl.MemoryJobManagement;
 import org.junit.Test;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class JobScriptsTest {
-	private Path[] scriptPaths = {
-            Paths.get("src/main/groovy/job_dsl.groovy"),
-            Paths.get("src/main/groovy/pipeline_dsl.groovy"),
-            Paths.get("src/main/groovy/pipeline_included_dsl.groovy")
-    };
+
+    private static List<Path> scripts = new ArrayList<Path>();
+	static {
+        Path testFilesFolder = Paths.get("src/main/groovy/");
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(testFilesFolder, "*.groovy")) {
+            for (Path file : stream) {
+                if (!scripts.contains(file))
+                    scripts.add(file);
+            }
+        } catch (IOException | DirectoryIteratorException x) {
+            ;
+        }
+    }
+	//TODO move to groovy e.g. https://www.javacodegeeks.com/2015/04/short-on-time-switch-to-groovy-for-unit-testing.html
 
     @Test
     public void compileSimpleScript() throws Exception {
@@ -23,7 +34,7 @@ public class JobScriptsTest {
         DslScriptLoader loader = new DslScriptLoader(jm);
 
         //then
-        for (Path scriptPath : scriptPaths) {
+        for (Path scriptPath : scripts) {
             loader.runScript(new String(Files.readAllBytes(scriptPath)));
         }
     }}

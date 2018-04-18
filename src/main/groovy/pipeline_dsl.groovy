@@ -6,7 +6,9 @@ factory.pipelineJob("4th DSL create pipeline") {
             scm {
                 git('https://github.com/M-Kurek/TemplateJettySpring.git', 'gradle_4_dsl')
             }
-            scriptPath("src/main/groovy/pipelines_defs/pipeline_1.def")
+            scriptPath("src/main/groovy/pipelines_defs/pipeline_1.def") //default /Jenkinsfile
         }
     }
 }
+
+factory.job("wefsa")
