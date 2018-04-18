@@ -10,7 +10,7 @@ def stepDeploy = "spring-mvn-deploy"
 factory.job(stepBuild) {
     deliveryPipelineConfiguration("Build")
     triggers {
-        scm("H/2 9-16/2 * * 1-5")
+        scm("H/2 9-16 * * 1-5")
     }
     scm { github("M-Kurek/TemplateJettySpring", "gradle_4_dsl") }
     steps {
