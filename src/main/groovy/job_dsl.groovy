@@ -1,4 +1,7 @@
-/* helper setting for IntelliJ */
+/**
+ * create 2 jobs and connect them in pipeline
+ * problems : allowPipelineStart([*]) - nie startuje p-line
+ */
 javaposse.jobdsl.dsl.DslFactory factory = this
 
 def stepBuild = "spring-mvn-build"
@@ -7,7 +10,7 @@ def stepDeploy = "spring-mvn-deploy"
 factory.job(stepBuild) {
     deliveryPipelineConfiguration("Build")
     triggers {
-        githubPush()
+        scm("H/2 9-16/2 * * 1-5")
     }
     scm { github("M-Kurek/TemplateJettySpring", "gradle_4_dsl") }
     steps {
@@ -48,7 +51,7 @@ factory.deliveryPipelineView("2nd DSL pipeline view") {
     pipelines {
         component("Create simple web app", stepBuild)
     }
-    allowPipelineStart(true)
+    //no effect? allowPipelineStart(true)
     showChangeLog()
     allowRebuild()
     showDescription()
