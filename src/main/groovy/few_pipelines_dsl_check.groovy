@@ -16,11 +16,12 @@ pipeline {
         stage('Installation') {
             steps {
                 shell("echo Installation here")
-                timeout(time:10, unit:'SECONDS') {
-                    shell 'some delay 1'
-                }
-                timeout(time:10, unit:'SECONDS') {
-                    shell 'some delay 2'
+                script {
+                    println 'Step 1'
+                    sleep(3000)
+                    println 'Step 2'
+                    sleep(3000)
+                    println 'Step 3'
                 }
                 shell("echo Installation finished")
             }
