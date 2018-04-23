@@ -20,11 +20,10 @@ pipeline {
             steps {
                 shell("echo Installation here")
                 script {
+                    sleep(10)
                     println "Step 1 : ${ new Date().format('HH:mm:ss.SSS')}"
-                    sleep(5)
+                    sleep(10)
                     println "Step 2 : ${ new Date().format('HH:mm:ss.SSS')}"
-                    sleep(5)
-                    println "Step 3 : ${ new Date().format('HH:mm:ss.SSS')}"
                 }
                 shell("echo Installation finished")
             }
@@ -41,7 +40,7 @@ pipeline {
         }
     }
 }
-factory.pipelineJob("TWO DSL not sync pipeline") {
+factory.pipelineJob("2nd DSL not sync pipeline") {
     definition {
         cps {
             sandbox()
@@ -58,11 +57,10 @@ pipeline {
             steps {
                 shell("echo Installation here")
                 script {
+                    sleep(10)
                     println "Step 1 : ${ new Date().format('HH:mm:ss.SSS')}"
-                    sleep(5)
+                    sleep(10)
                     println "Step 2 : ${ new Date().format('HH:mm:ss.SSS')}"
-                    sleep(5)
-                    println "Step 3 : ${ new Date().format('HH:mm:ss.SSS')}"
                 }
                 shell("echo Installation finished")
             }
