@@ -17,10 +17,10 @@ pipeline {
             steps {
                 shell("echo Installation here")
                 timeout(time:10, unit:'SECONDS') {
-                    input message:'some delay 1'
+                    shell 'some delay 1'
                 }
                 timeout(time:10, unit:'SECONDS') {
-                    input message:'some delay 2'
+                    shell 'some delay 2'
                 }
                 shell("echo Installation finished")
             }
