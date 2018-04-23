@@ -1,6 +1,6 @@
 javaposse.jobdsl.dsl.DslFactory factory = this
 
-factory.pipelineJob("ONE DSL create pipeline") {
+factory.pipelineJob("ONE DSL synchronized pipeline") {
     definition {
         cps {
             sandbox()
@@ -21,9 +21,9 @@ pipeline {
                 shell("echo Installation here")
                 script {
                     println "Step 1 : ${ new Date().format('HH:mm:ss.SSS')}"
-                    sleep(10)
+                    sleep(5)
                     println "Step 2 : ${ new Date().format('HH:mm:ss.SSS')}"
-                    sleep(10)
+                    sleep(5)
                     println "Step 3 : ${ new Date().format('HH:mm:ss.SSS')}"
                 }
                 shell("echo Installation finished")
@@ -41,7 +41,7 @@ pipeline {
         }
     }
 }
-factory.pipelineJob("TWO DSL create pipeline") {
+factory.pipelineJob("TWO DSL not sync pipeline") {
     definition {
         cps {
             sandbox()
@@ -57,6 +57,14 @@ pipeline {
         stage('Installation') {
             steps {
                 shell("echo Installation here")
+                script {
+                    println "Step 1 : ${ new Date().format('HH:mm:ss.SSS')}"
+                    sleep(5)
+                    println "Step 2 : ${ new Date().format('HH:mm:ss.SSS')}"
+                    sleep(5)
+                    println "Step 3 : ${ new Date().format('HH:mm:ss.SSS')}"
+                }
+                shell("echo Installation finished")
             }
         }    
     }
