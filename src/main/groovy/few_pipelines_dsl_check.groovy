@@ -7,6 +7,9 @@ factory.pipelineJob("ONE DSL create pipeline") {
             script("""
 pipeline {
     agent any
+    options { 
+      disableConcurrentBuilds() 
+    }
     stages {
         stage('Baseline') {
             steps {
@@ -17,11 +20,11 @@ pipeline {
             steps {
                 shell("echo Installation here")
                 script {
-                    println 'Step 1'
-                    sleep(3000)
-                    println 'Step 2'
-                    sleep(3000)
-                    println 'Step 3'
+                    println "Step 1 : ${ new Date().format('HH:mm:ss.SSS')}"
+                    sleep(10)
+                    println "Step 2 : ${ new Date().format('HH:mm:ss.SSS')}"
+                    sleep(10)
+                    println "Step 3 : ${ new Date().format('HH:mm:ss.SSS')}"
                 }
                 shell("echo Installation finished")
             }
